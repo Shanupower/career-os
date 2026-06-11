@@ -1,0 +1,33 @@
+# Career OS — consolidated Python dependencies (pinned)
+# Install: python -m venv .venv && pip install -r requirements.txt
+
+# Job discovery
+python-jobspy==1.1.82
+pandas==2.3.3
+numpy==1.26.3
+requests==2.34.2
+beautifulsoup4==4.15.0
+soupsieve==2.8.4
+python-dateutil==2.9.0.post0
+
+# Browser automation (PDF export, outreach scraper)
+playwright==1.60.0
+pyee==13.0.1
+greenlet==3.5.1
+
+# Resume tailoring & parsing
+jinja2==3.1.6
+MarkupSafe==3.0.3
+pypdf==6.13.1
+python-docx==1.1.2
+
+# HTTP / parsing utilities
+certifi==2026.5.20
+charset-normalizer==3.4.7
+idna==3.18
+urllib3==2.7.0
+six==1.17.0
+tzdata==2026.2
+
+# Testing (dev)
+pytest==8.4.1
