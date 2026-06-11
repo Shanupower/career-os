@@ -1,0 +1,42 @@
+# {{ name }}
+
+{{ contact }}
+
+## About Me
+
+{{ about_me }}
+
+{% if experience %}
+## Professional Experience
+
+{% for job in experience %}
+### {{ job.company }}{% if job.location %} — {{ job.location }}{% endif %} | {{ job.dates }}
+
+**{{ job.title }}**
+
+{% for b in job.bullets %}- {{ b }}
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+{% if projects %}
+## Projects
+
+{% for p in projects %}- **{{ p.name }}** — {{ p.line }}
+{% endfor %}
+{% endif %}
+
+{% if skill_categories %}
+## Skills and Others
+
+{% for cat in skill_categories %}{% if cat.skills %}- **{{ cat.label }}:** {{ cat.skills | join(', ') }}
+{% endif %}{% endfor %}
+{% endif %}
+
+{% if education and education.school %}
+## Education
+
+{{ education.school }} | Graduated {{ education.graduated }}
+
+{{ education.degree }} | CGPA: {{ education.cgpa }}
+{% endif %}

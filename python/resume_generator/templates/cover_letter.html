@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ name }} — Cover Letter</title>
+  <style>
+    /* Immutable visual spec — see CAREER_OS_GENERATION_CONTEXT.md Parts 1 and 3. */
+    :root {
+      --navy: #1A365D;
+      --body: #2D3748;
+      --slate: #4A5568;
+      --light: #CBD5E0;
+    }
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: Helvetica, Arial, "Nimbus Sans", sans-serif;
+      color: var(--body);
+      background: #fff;
+    }
+    body { padding: 30pt 42.52pt 40pt; }
+
+    .name {
+      font-size: 20pt; font-weight: bold; color: var(--navy);
+      text-align: center; line-height: 23pt;
+    }
+    .subtitle {
+      font-size: 9.5pt; color: var(--slate); text-align: center;
+      line-height: 12pt; margin-top: 4pt;
+    }
+    .contact {
+      font-size: 8.5pt; color: var(--slate); text-align: center;
+      line-height: 11pt; margin-top: 4pt;
+    }
+    .contact .sep { color: var(--light); }
+
+    .rule {
+      border-bottom: 0.75pt solid var(--navy);
+      margin-top: 8pt; margin-bottom: 16pt;
+    }
+
+    .meta { font-size: 9.5pt; color: var(--slate); line-height: 13pt; }
+    .addressee { margin-top: 10pt; }
+    .salutation { font-size: 10pt; line-height: 14.5pt; margin-top: 14pt; }
+
+    p.para {
+      font-size: 10pt; line-height: 14.5pt; text-align: justify;
+      margin-top: 9pt;
+    }
+    .signoff { font-size: 10pt; line-height: 14.5pt; margin-top: 15pt; }
+    .signature { font-size: 10pt; font-weight: bold; line-height: 14.5pt; margin-top: 4pt; }
+  </style>
+</head>
+<body>
+  <div class="name">{{ name }}</div>
+  {% if subtitle %}<div class="subtitle">{{ subtitle }}</div>{% endif %}
+  <div class="contact">
+    {%- for item in contact_items -%}
+      {{ item }}{% if not loop.last %}&nbsp;&nbsp;<span class="sep">|</span>&nbsp;&nbsp;{% endif %}
+    {%- endfor -%}
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="meta">{{ date_long }}</div>
+  <div class="meta addressee">
+    {% for line in addressee_lines %}{{ line }}{% if not loop.last %}<br/>{% endif %}{% endfor %}
+  </div>
+
+  <div class="salutation">{{ salutation }}</div>
+
+  {% for p in paragraphs %}
+  <p class="para">{{ p }}</p>
+  {% endfor %}
+
+  <div class="signoff">Sincerely,</div>
+  <div class="signature">{{ signature_name }}</div>
+</body>
+</html>

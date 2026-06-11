@@ -1,0 +1,14 @@
+{{ name }}
+{% if subtitle %}{{ subtitle }}
+{% endif %}{{ contact_items | join(' | ') }}
+
+{{ date_long }}
+
+{% for line in addressee_lines %}{{ line }}
+{% endfor %}
+{{ salutation }}
+
+{% for p in paragraphs %}{{ p }}
+
+{% endfor %}Sincerely,
+{{ signature_name }}
