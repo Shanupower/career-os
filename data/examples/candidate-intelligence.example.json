@@ -1,0 +1,73 @@
+{
+  "candidateSummary": {
+    "candidateType": "Full-Stack Engineer",
+    "seniorityLevel": "Mid-Level",
+    "oneLinePitch": "Mid-Level Full-Stack Engineer targeting Full Stack Developer roles.",
+    "careerNarrative": "Full stack engineer with hands-on experience in React, Node.js, and cloud deployment.",
+    "positioningStatement": "Product-minded engineer. Strong ownership and collaboration."
+  },
+  "roleStrategy": {
+    "primaryTargetRoles": ["Full Stack Developer", "Software Engineer", "Backend Developer"],
+    "secondaryTargetRoles": ["Frontend Developer", "Web Developer"],
+    "stretchRoles": ["Senior Full Stack Engineer"],
+    "avoidRoles": [],
+    "searchRoleVariants": ["Full Stack Developer", "Software Engineer", "Backend Developer", "Full Stack Engineer"]
+  },
+  "skillsMap": {
+    "technicalSkills": ["JavaScript", "TypeScript", "Python", "React", "Node.js", "PostgreSQL", "AWS", "Docker", "Git"],
+    "frontend": ["JavaScript", "TypeScript", "React"],
+    "backend": ["Python", "Node.js", "PostgreSQL"],
+    "database": ["PostgreSQL", "SQL"],
+    "cloudDevOps": ["AWS", "Docker", "Git"],
+    "aiAutomation": [],
+    "productBusiness": [],
+    "leadership": [],
+    "softSkills": ["Collaboration", "Fast learner"]
+  },
+  "experienceMap": {
+    "yearsOfExperience": "4",
+    "domainsWorkedIn": ["SaaS", "Developer tools"],
+    "projectHighlights": ["Built TaskFlow API serving 10k daily users"],
+    "ownershipExamples": [],
+    "leadershipExamples": [],
+    "businessImpactExamples": []
+  },
+  "jobFitPreferences": {
+    "preferredCompanyTypes": ["No preference"],
+    "preferredIndustries": ["SaaS", "Developer tools"],
+    "avoidedIndustries": [],
+    "preferredLocations": ["San Francisco", "Remote"],
+    "remotePreference": "hybrid",
+    "salaryExpectation": "120000",
+    "culturePreference": ["Building products", "Collaboration"],
+    "workToAvoid": []
+  },
+  "candidateStrengths": ["Full-stack depth", "Cloud deployment capability"],
+  "candidateWeaknesses": [],
+  "resumeKeywords": ["Full Stack Developer", "Software Engineer", "JavaScript", "TypeScript", "React", "Node.js", "PostgreSQL", "AWS"],
+  "atsKeywordBank": {
+    "highPriority": ["JavaScript", "TypeScript", "React", "Node.js", "PostgreSQL", "AWS"],
+    "mediumPriority": ["Full Stack Developer", "Software Engineer"],
+    "supportingKeywords": ["Docker", "Git", "Python"]
+  },
+  "searchStrategy": {
+    "recommendedSearchQueries": ["Full Stack Developer San Francisco", "Software Engineer remote"],
+    "linkedinSearchQueries": ["\"Full Stack Developer\" AND (React)"],
+    "jobSpySearchTerms": ["Full Stack Developer", "Software Engineer"],
+    "locationFilters": ["San Francisco", "Remote"],
+    "remoteFilters": ["remote", "hybrid"]
+  },
+  "scoringWeights": {
+    "roleMatch": 25,
+    "skillMatch": 25,
+    "industryMatch": 15,
+    "experienceMatch": 15,
+    "locationMatch": 10,
+    "cultureMatch": 10
+  },
+  "meta": {
+    "generatedAt": "2026-01-15T10:30:00.000Z",
+    "sourceProfileVersion": "1.0",
+    "intelligenceVersion": "1.0"
+  }
+}

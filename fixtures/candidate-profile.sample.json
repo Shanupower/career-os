@@ -1,0 +1,62 @@
+{
+  "basicProfile": {
+    "fullName": "Alex Chen",
+    "email": "alex.chen@example.com",
+    "phone": "+1-555-0100",
+    "location": "San Francisco, CA",
+    "currentRole": "Senior Full Stack Engineer",
+    "experienceYears": "6",
+    "targetRoles": ["Full Stack Engineer", "Senior Software Engineer"],
+    "preferredLocations": ["San Francisco, CA", "Remote"],
+    "remotePreference": "Hybrid",
+    "salaryExpectation": "$160,000 - $190,000"
+  },
+  "resume": {
+    "fileName": "alex-chen-resume.pdf",
+    "uploadedAt": "2026-06-01T12:00:00.000Z",
+    "rawText": "Senior Full Stack Engineer with experience in React, Node.js, PostgreSQL, and AWS.",
+    "parsedData": {
+      "skills": ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
+      "projects": ["E-commerce platform rebuild", "Internal analytics dashboard"],
+      "education": ["BS Computer Science, State University"],
+      "workExperience": [
+        "Senior Full Stack Engineer at Acme SaaS",
+        "Software Engineer at FinStart"
+      ],
+      "certifications": ["AWS Solutions Architect Associate"],
+      "links": []
+    }
+  },
+  "repositories": {
+    "githubLinks": ["https://github.com/alexchen/demo-app"],
+    "localRepoPaths": []
+  },
+  "questionnaire": {
+    "answers": [
+      { "id": 1, "question": "What type of company do you prefer: startup, mid-size, enterprise, or no preference?", "answer": "Startup" },
+      { "id": 2, "question": "What are your strongest technical skills?", "answer": "React, TypeScript, Node.js, PostgreSQL" },
+      { "id": 3, "question": "What are your strongest business/product skills?", "answer": "Product strategy, Stakeholder management, Prioritization" },
+      { "id": 4, "question": "Which projects are you most proud of and why?", "answer": "Production system at scale, E-commerce platform rebuild" },
+      { "id": 5, "question": "What technologies have you used in real-world projects?", "answer": "React, Node.js, PostgreSQL, AWS, Docker" },
+      { "id": 6, "question": "What kind of problems have you solved in your past work?", "answer": "Scaling systems, Performance optimization, System architecture" },
+      { "id": 7, "question": "What are your biggest achievements so far?", "answer": "Shipped a major product, Improved performance, Mentored engineers" },
+      { "id": 8, "question": "What responsibilities have you handled beyond your years of experience?", "answer": "Team leadership, Architecture decisions, Cross-functional ownership" },
+      { "id": 9, "question": "What kind of work do you enjoy most?", "answer": "Building products, Solving hard technical problems, System design" },
+      { "id": 10, "question": "What kind of work do you want to avoid?", "answer": "Micromanagement, Heavy on-call, Legacy-only maintenance" },
+      { "id": 11, "question": "What industries are you interested in?", "answer": "SaaS, Fintech, Developer tools" },
+      { "id": 12, "question": "What industries do you want to avoid?", "answer": "Government / public sector, Consulting" },
+      { "id": 13, "question": "How do you want recruiters to perceive you?", "answer": "Product-minded engineer, Technical expert, Reliable executor" },
+      { "id": 14, "question": "What makes you different from other candidates?", "answer": "Full-stack depth, Strong ownership, Track record of delivery" },
+      { "id": 15, "question": "What are your leadership or ownership examples?", "answer": "Led a project end-to-end, Mentored junior engineers, Drove cross-team initiative" },
+      { "id": 16, "question": "What are your weaknesses or areas you are improving?", "answer": "Public speaking, Delegation, System design at scale" },
+      { "id": 17, "question": "Write a short personal career summary in your own words.", "answer": "I am a product-minded full stack engineer with six years of experience building scalable SaaS products. I enjoy owning features end-to-end from architecture through delivery. I am looking for a startup where I can combine strong engineering with customer impact." }
+    ]
+  },
+  "meta": {
+    "createdAt": "2026-06-01T12:00:00.000Z",
+    "updatedAt": "2026-06-09T12:00:00.000Z",
+    "profileVersion": "1.0",
+    "questionnaireVersion": "17",
+    "lastStep": 5
+  }
+}

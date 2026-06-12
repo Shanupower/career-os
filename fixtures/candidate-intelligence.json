@@ -1,0 +1,281 @@
+{
+  "candidateSummary": {
+    "candidateType": "Full Stack Product Engineer",
+    "seniorityLevel": "Lead",
+    "oneLinePitch": "Lead Full Stack Product Engineer with 6 years experience targeting Full Stack Engineer.",
+    "careerNarrative": "I am a product-minded full stack engineer with six years of experience building scalable SaaS products. I enjoy owning features end-to-end from architecture through delivery. I am looking for a startup where I can combine strong engineering with customer impact.",
+    "positioningStatement": "Product-minded engineer, Technical expert, Reliable executor. Full-stack depth, Strong ownership"
+  },
+  "roleStrategy": {
+    "primaryTargetRoles": [
+      "Full Stack Engineer",
+      "Senior Software Engineer"
+    ],
+    "secondaryTargetRoles": [
+      "Full Stack Developer",
+      "Software Engineer",
+      "Web Developer",
+      "Backend Developer",
+      "Frontend Developer",
+      "Software Developer"
+    ],
+    "stretchRoles": [
+      "Senior Full Stack Engineer",
+      "Lead Full Stack Engineer",
+      "Staff Full Stack Engineer",
+      "Principal Software Engineer",
+      "Engineering Manager",
+      "Head of Engineering"
+    ],
+    "avoidRoles": [
+      "Site Reliability Engineer",
+      "DevOps Engineer",
+      "NOC Engineer",
+      "Maintenance Engineer",
+      "Legacy Systems Developer"
+    ],
+    "searchRoleVariants": [
+      "Full Stack Engineer",
+      "Senior Software Engineer",
+      "Full Stack Developer",
+      "Software Engineer",
+      "Web Developer",
+      "Backend Developer",
+      "Frontend Developer",
+      "Software Developer",
+      "Full Stack",
+      "Senior Software",
+      "Full Stack Product Engineer",
+      "Backend Engineer",
+      "API Developer",
+      "Node.js Developer",
+      "Python Developer",
+      "Frontend Engineer",
+      "UI Engineer",
+      "React Developer"
+    ]
+  },
+  "skillsMap": {
+    "technicalSkills": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "AWS",
+      "Docker",
+      "Solving hard technical problems",
+      "System design",
+      "Technical expert"
+    ],
+    "frontend": [
+      "React",
+      "TypeScript"
+    ],
+    "backend": [
+      "Node.js"
+    ],
+    "database": [
+      "PostgreSQL"
+    ],
+    "cloudDevOps": [
+      "AWS",
+      "Docker"
+    ],
+    "aiAutomation": [],
+    "productBusiness": [
+      "Product strategy",
+      "Stakeholder management",
+      "Prioritization",
+      "Building products",
+      "Product-minded engineer"
+    ],
+    "leadership": [
+      "Led a project end-to-end",
+      "Mentored junior engineers",
+      "Drove cross-team initiative"
+    ],
+    "softSkills": [
+      "Reliable executor"
+    ]
+  },
+  "experienceMap": {
+    "yearsOfExperience": "6",
+    "domainsWorkedIn": [
+      "Scaling systems",
+      "Performance optimization",
+      "System architecture",
+      "Senior Full Stack Engineer at Acme SaaS",
+      "Software Engineer at FinStart"
+    ],
+    "projectHighlights": [
+      "Production system at scale",
+      "E-commerce platform rebuild",
+      "Internal analytics dashboard"
+    ],
+    "ownershipExamples": [
+      "Team leadership",
+      "Architecture decisions",
+      "Cross-functional ownership"
+    ],
+    "leadershipExamples": [
+      "Led a project end-to-end",
+      "Mentored junior engineers",
+      "Drove cross-team initiative"
+    ],
+    "businessImpactExamples": [
+      "Shipped a major product",
+      "Improved performance",
+      "Mentored engineers",
+      "Performance optimization"
+    ]
+  },
+  "jobFitPreferences": {
+    "preferredCompanyTypes": [
+      "Startup"
+    ],
+    "preferredIndustries": [
+      "SaaS",
+      "Fintech",
+      "Developer tools"
+    ],
+    "avoidedIndustries": [
+      "Government / public sector",
+      "Consulting"
+    ],
+    "preferredLocations": [
+      "San Francisco, CA",
+      "Remote"
+    ],
+    "remotePreference": "Hybrid",
+    "salaryExpectation": "$160,000 - $190,000",
+    "culturePreference": [
+      "Building products",
+      "Solving hard technical problems",
+      "System design"
+    ],
+    "workToAvoid": [
+      "Micromanagement",
+      "Heavy on-call",
+      "Legacy-only maintenance"
+    ]
+  },
+  "candidateStrengths": [
+    "Full-stack depth",
+    "Strong ownership",
+    "Track record of delivery",
+    "Shipped a major product",
+    "Improved performance",
+    "Mentored engineers",
+    "Frontend engineering depth",
+    "Backend/API engineering depth"
+  ],
+  "candidateWeaknesses": [
+    "Public speaking",
+    "Delegation",
+    "System design at scale"
+  ],
+  "resumeKeywords": [
+    "Full Stack Engineer",
+    "Senior Software Engineer",
+    "Senior Full Stack Engineer",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "AWS",
+    "Docker",
+    "Solving hard technical problems",
+    "System design",
+    "Technical expert",
+    "Full Stack Developer",
+    "Software Engineer",
+    "Web Developer",
+    "Backend Developer",
+    "Frontend Developer",
+    "Software Developer",
+    "E-commerce platform rebuild",
+    "Internal analytics dashboard",
+    "AWS Solutions Architect Associate",
+    "BS Computer Science, State University",
+    "Developer tools",
+    "Product strategy",
+    "Stakeholder management",
+    "Building products"
+  ],
+  "atsKeywordBank": {
+    "highPriority": [
+      "Full Stack Engineer",
+      "Senior Software Engineer",
+      "Senior Full Stack Engineer",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "AWS",
+      "Docker",
+      "Solving hard technical problems",
+      "System design",
+      "Technical expert"
+    ],
+    "mediumPriority": [
+      "Full Stack Developer",
+      "Software Engineer",
+      "Web Developer",
+      "Backend Developer",
+      "Frontend Developer",
+      "Software Developer",
+      "E-commerce platform rebuild",
+      "Internal analytics dashboard",
+      "AWS Solutions Architect Associate"
+    ],
+    "supportingKeywords": [
+      "BS Computer Science, State University",
+      "Developer tools",
+      "Product strategy",
+      "Stakeholder management",
+      "Building products",
+      "Product-minded engineer",
+      "Reliable executor"
+    ]
+  },
+  "searchStrategy": {
+    "recommendedSearchQueries": [
+      "Full Stack Engineer San Francisco, CA Hybrid",
+      "Full Stack Engineer Remote Hybrid",
+      "Senior Software Engineer San Francisco, CA Hybrid",
+      "Senior Software Engineer Remote Hybrid"
+    ],
+    "linkedinSearchQueries": [
+      "\"Full Stack Engineer\" AND (React)",
+      "\"Senior Software Engineer\" AND (React)"
+    ],
+    "jobSpySearchTerms": [
+      "Full Stack Engineer",
+      "Senior Software Engineer",
+      "Full Stack Developer",
+      "Software Engineer"
+    ],
+    "locationFilters": [
+      "San Francisco, CA",
+      "Remote"
+    ],
+    "remoteFilters": [
+      "remote",
+      "hybrid",
+      "flexible"
+    ]
+  },
+  "scoringWeights": {
+    "roleMatch": 25,
+    "skillMatch": 25,
+    "industryMatch": 15,
+    "experienceMatch": 15,
+    "locationMatch": 10,
+    "cultureMatch": 10
+  },
+  "meta": {
+    "generatedAt": "2026-06-09T11:32:45.344Z",
+    "sourceProfileVersion": "1.0",
+    "intelligenceVersion": "1.0"
+  }
+}

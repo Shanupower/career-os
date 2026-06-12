@@ -1,0 +1,47 @@
+{
+  "basicProfile": {
+    "fullName": "Alex Dev",
+    "email": "alex.dev@example.com",
+    "phone": "+1-555-0100",
+    "location": "San Francisco, CA",
+    "currentRole": "Full Stack Engineer",
+    "experienceYears": "4",
+    "targetRoles": ["Full Stack Developer", "Software Engineer", "Backend Developer"],
+    "preferredLocations": ["San Francisco", "Remote"],
+    "remotePreference": "hybrid",
+    "salaryExpectation": "120000"
+  },
+  "resume": {
+    "fileName": "alex-dev-resume.pdf",
+    "uploadedAt": "2026-01-15T10:00:00.000Z",
+    "rawText": "Alex Dev — Full Stack Engineer with 4 years building React and Node.js applications.",
+    "parsedData": {
+      "skills": ["JavaScript", "TypeScript", "Python", "React", "Node.js", "PostgreSQL", "AWS", "Docker", "Git"],
+      "projects": ["TaskFlow API", "DevMetrics Dashboard"],
+      "education": ["B.S. Computer Science, State University"],
+      "workExperience": ["Software Engineer at TechCorp (2022–present)", "Junior Developer at StartupXYZ (2020–2022)"],
+      "certifications": [],
+      "links": ["https://github.com/alexdev-example"]
+    }
+  },
+  "repositories": {
+    "githubLinks": ["https://github.com/alexdev-example/taskflow"],
+    "localRepoPaths": []
+  },
+  "questionnaire": {
+    "answers": [
+      { "id": 1, "question": "Company preference", "answer": "No preference" },
+      { "id": 2, "question": "Technical skills", "answer": "JavaScript, TypeScript, Python, React, Node.js, PostgreSQL, AWS, Docker, Git" },
+      { "id": 5, "question": "Technologies used", "answer": "JavaScript, TypeScript, React, Node.js, PostgreSQL, AWS" }
+    ]
+  },
+  "meta": {
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "updatedAt": "2026-01-15T10:00:00.000Z",
+    "profileVersion": "1.0",
+    "questionnaireVersion": "17",
+    "lastStep": 5,
+    "onboardingComplete": true,
+    "completedAt": "2026-01-15T10:30:00.000Z"
+  }
+}
