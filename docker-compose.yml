@@ -1,0 +1,10 @@
+services:
+  career-os:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PORT=5173
+      - CLAUDE_AUTO_LOGIN=0

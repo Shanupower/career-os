@@ -1,0 +1,15 @@
+node_modules
+dist
+.venv
+data/cache
+data/resumes
+data/profile
+data/jobs
+data/intelligence
+data/outreach
+data/analytics
+data/audits
+data/interviews
+.git
+.env
+.env.local
