@@ -1,0 +1,53 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.py[cod]
+*.pyc
+.pytest_cache/
+
+# Cloned external dependencies (setup scripts)
+external/
+
+# Runtime data — never commit personal/job data
+data/cache/
+data/resumes/
+data/profile/*.json
+data/jobs/*.json
+data/jobs/*.csv
+data/intelligence/*.json
+data/analytics/
+data/audits/
+data/outreach/
+data/interviews/
+
+# LinkedIn session cookie for deep-mode scraping (secret — never commit)
+data/outreach/linkedin_session.json
+
+# Environment
+.env
+.env.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

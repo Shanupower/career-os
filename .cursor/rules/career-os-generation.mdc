@@ -1,0 +1,44 @@
+---
+description: Resume & cover letter generation contract — fixed visual identity, per-JD tailoring recipes, and the validation loop for every generated PDF pair
+globs: python/resume_generator/**,resume_generator.py,cover_letter.py,data/resumes/**
+alwaysApply: false
+---
+
+# Career OS — Tailored Resume & Cover Letter Generation
+
+Full spec: `CAREER_OS_GENERATION_CONTEXT.md` (repo root). **Read it before touching any
+generation code.** Reference implementations of the exact target output live at the repo
+root: `resume_generator.py` (resume, ReportLab) and `cover_letter.py` (letter, ReportLab).
+The production pipeline is `python/resume_generator/` (HTML templates → Playwright PDF).
+
+## Hard rules (never violate)
+
+- **Styling is fixed, content is variable.** Never change fonts, colors, margins, or layout
+  per job — only the words change. Both PDFs of a pair share one visual identity:
+  Helvetica, navy `#1A365D` / body `#2D3748` / slate `#4A5568` / gray `#718096` /
+  light `#CBD5E0`, A4 with 42.52pt L/R margins, **all paragraph and bullet text justified**.
+- **Every claim must trace to candidate data** (`data/profile/candidate-profile.json`,
+  `data/intelligence/candidate-intelligence.json`). Never invent metrics, employers,
+  titles, or technologies. Numbers and proper nouns are copied verbatim (₹1,000 Cr AUM,
+  20+ applications, …).
+- Keyword mirroring: use the JD's exact phrasing only where the candidate genuinely has
+  the skill. Skip JD keywords the candidate can't support.
+- Banned clichés: "passionate", "team player", "fast-paced environment", "results-driven",
+  "go-getter", "think outside the box", "self-starter", "dynamic", "synergy".
+- Resume: 9.5pt body. Cover letter: 4 paragraphs, ~330–420 words, 10pt body, leading 14.5.
+- Both PDFs must be exactly **one page**. Overflow → apply the spacing ladder in Part 2 of
+  the spec (shrink gaps/leading in small steps, re-render), never shrink type below
+  9.5pt body, then trim content — never type.
+- En dash (–) in date ranges, full month names. Letter date = generation date, long format.
+- Filenames: `<NameSlug>_<CompanySlug>_<RoleSlug>_Resume.pdf` / `..._CoverLetter.pdf`.
+
+## What changes per JD (Part 5 of the spec)
+
+`subtitle`, `summary`, bullet **ordering** (JD-relevant first), skills **row ordering**.
+Frozen: name, contact, dates, companies, real titles, education.
+
+## Validation (every generated pair)
+
+Page count == 1 for both · text justified · navy rules present · ₹ renders (no black
+boxes) · footer on resume only · no banned clichés · all digits diff clean against
+candidate data. See Parts 6–7 of the spec for the full loop and gotchas.
