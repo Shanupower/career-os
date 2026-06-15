@@ -1,0 +1,47 @@
+# Render demo image — lighter than full Dockerfile (Chromium only, pre-seeded data).
+FROM node:20-bookworm AS frontend
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+ENV VITE_DEMO_MODE=1
+RUN npm run build
+
+FROM python:3.12-slim-bookworm
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git curl ca-certificates \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY python ./python
+COPY scripts ./scripts
+COPY companies ./companies
+COPY data/examples ./data/examples
+COPY requirements.txt ./
+
+RUN bash scripts/setup-render.sh
+
+COPY --from=frontend /app/dist ./dist
+COPY src ./src
+
+COPY data/examples/candidate-profile.example.json data/profile/candidate-profile.json
+COPY data/examples/candidate-intelligence.example.json data/intelligence/candidate-intelligence.json
+COPY data/examples/scored_jobs.example.json data/jobs/scored_jobs.json
+
+RUN mkdir -p data/resumes data/outreach data/cache data/analytics data/audits data/interviews \
+  && chmod +x scripts/docker-entrypoint.sh
+
+ENV PORT=10000
+ENV DEMO_MODE=1
+ENV CLAUDE_AUTO_LOGIN=0
+ENV NODE_OPTIONS=--max-old-space-size=384
+
+EXPOSE 10000
+
+CMD ["bash", "scripts/docker-entrypoint.sh"]

@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: career-os-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile.render
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DEMO_MODE
+        value: "1"
+      - key: CLAUDE_AUTO_LOGIN
+        value: "0"
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=384
