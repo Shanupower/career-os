@@ -5,7 +5,7 @@ import Button from '../ui/Button'
 import Alert from '../ui/Alert'
 import { useProfile } from '../../context/ProfileContext'
 import { useAppConfig } from '../../hooks/useAppConfig'
-import { loadDemoData } from '../../modules/demo/loadDemoData'
+import { loadDemoData, isDemoProfileLoaded } from '../../modules/demo/loadDemoData'
 
 const STEPS_PREVIEW = ['Upload resume', 'Review profile', 'Add repositories', 'Answer 17 questions', 'Export JSON']
 
@@ -15,6 +15,8 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
   const [demoLoading, setDemoLoading] = useState(false)
   const [demoError, setDemoError] = useState(null)
   const hasProgress = profile.resume?.fileName || profile.meta?.lastStep > 0
+
+  const demoLoaded = isDemoProfileLoaded(profile)
 
   const handleExploreDemo = async () => {
     setDemoLoading(true)
@@ -47,7 +49,12 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
       </div>
 
       {demoMode && (
-        <Card title="Live demo" description="Pre-loaded with a fictional Alex Dev profile and scored jobs.">
+        <Card
+          title="Live demo"
+          description={demoLoaded
+            ? 'Reset the Alex Dev sample profile and scored jobs.'
+            : 'Pre-loaded with a fictional Alex Dev profile and scored jobs.'}
+        >
           {demoError && (
             <div className="mb-3">
               <Alert variant="error">{demoError}</Alert>
@@ -55,7 +62,7 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
           )}
           <Button onClick={handleExploreDemo} disabled={demoLoading} className="w-full justify-center sm:w-auto">
             {demoLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Zap className="h-4 w-4" />}
-            Explore live demo
+            {demoLoaded ? 'Reset demo' : 'Explore live demo'}
           </Button>
         </Card>
       )}

@@ -61,6 +61,42 @@ export function getAppConfig() {
   }
 }
 
+function readJsonFile(...paths) {
+  for (const filePath of paths) {
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch {
+      // try next path
+    }
+  }
+  return null
+}
+
+export function getDemoBootstrap() {
+  const { demoMode } = getAppConfig()
+  const exampleProfile = path.join(ROOT, 'data/examples/candidate-profile.example.json')
+  const exampleIntelligence = path.join(ROOT, 'data/examples/candidate-intelligence.example.json')
+  const exampleJobs = path.join(ROOT, 'data/examples/scored_jobs.example.json')
+
+  if (demoMode) {
+    const profile = readJsonFile(exampleProfile)
+    const intelligence = readJsonFile(exampleIntelligence)
+    const jobs = readJsonFile(exampleJobs)
+    if (!profile || !intelligence || !jobs) return null
+    return { profile, intelligence, jobs }
+  }
+
+  const profile = readJsonFile(PROFILE_PATH, exampleProfile)
+  const intelligence = readJsonFile(INTELLIGENCE_PATH, exampleIntelligence)
+  const jobs = readJsonFile(SCORED_PATH, exampleJobs)
+  if (!profile || !intelligence || !jobs) {
+    return null
+  }
+  return { profile, intelligence, jobs }
+}
+
 export function getPipelineHealth() {
   const discovery = getDiscoveryStatus()
   const scoring = getScoringStatus()
@@ -166,6 +202,16 @@ export async function handleApiRequest(req, res) {
     return true
   }
 
+  if (url === '/api/demo/bootstrap' && req.method === 'GET') {
+    const bundle = getDemoBootstrap()
+    if (!bundle) {
+      sendJson(res, 404, { error: 'Demo bootstrap data not available' })
+      return true
+    }
+    sendJson(res, 200, bundle)
+    return true
+  }
+
   if (url === '/api/discovery/status' && req.method === 'GET') {
     sendJson(res, 200, {
       available: true,
@@ -218,6 +264,13 @@ export async function handleApiRequest(req, res) {
 
   if (url === '/api/scoring/jobs' && req.method === 'GET') {
     try {
+      if (getAppConfig().demoMode) {
+        const bundle = getDemoBootstrap()
+        if (bundle?.jobs) {
+          sendJson(res, 200, bundle.jobs)
+          return true
+        }
+      }
       if (!fs.existsSync(SCORED_PATH)) {
         sendJson(res, 404, { error: 'No scored_jobs.json yet' })
         return true
@@ -333,6 +386,11 @@ export async function handleApiRequest(req, res) {
   }
 
   if (url === '/api/intelligence/candidate' && req.method === 'GET') {
+    if (getAppConfig().demoMode) {
+      const bundle = getDemoBootstrap()
+      sendJson(res, 200, bundle?.intelligence ?? null)
+      return true
+    }
     const intelPath = path.join(ROOT, 'data/intelligence/candidate-intelligence.json')
     if (!fs.existsSync(intelPath)) {
       sendJson(res, 200, null)

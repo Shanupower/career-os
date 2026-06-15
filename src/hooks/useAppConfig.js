@@ -12,11 +12,15 @@ async function fetchAppConfig() {
     .then((data) => {
       cachedConfig = {
         demoMode: Boolean(data.demoMode) || import.meta.env.VITE_DEMO_MODE === '1',
+        loading: false,
       }
       return cachedConfig
     })
     .catch(() => {
-      cachedConfig = { demoMode: import.meta.env.VITE_DEMO_MODE === '1' }
+      cachedConfig = {
+        demoMode: import.meta.env.VITE_DEMO_MODE === '1',
+        loading: false,
+      }
       return cachedConfig
     })
     .finally(() => {
@@ -27,11 +31,14 @@ async function fetchAppConfig() {
 }
 
 export function useAppConfig() {
+  const bakedDemo = import.meta.env.VITE_DEMO_MODE === '1'
   const [config, setConfig] = useState(() => cachedConfig ?? {
-    demoMode: import.meta.env.VITE_DEMO_MODE === '1',
+    demoMode: bakedDemo,
+    loading: !cachedConfig && !bakedDemo,
   })
 
   useEffect(() => {
+    if (cachedConfig) return
     let active = true
     fetchAppConfig().then((next) => {
       if (active) setConfig(next)

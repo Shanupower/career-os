@@ -69,6 +69,13 @@ export function loadInitialView(profile) {
   return VIEWS.DASHBOARD
 }
 
+export function loadDemoInitialView(profile, demoMode) {
+  if (demoMode && isOnboardingComplete(profile)) {
+    return VIEWS.JOBS
+  }
+  return loadInitialView(profile)
+}
+
 export function persistView(view) {
   try {
     if (isValidView(view) && view !== VIEWS.ONBOARDING) {

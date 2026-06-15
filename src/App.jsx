@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ProfileProvider, useProfile } from './context/ProfileContext'
+import DemoBootstrapGate, { useDemoBootstrapContext } from './components/demo/DemoBootstrapGate'
 import AppShell from './components/layout/AppShell'
 import OnboardingWizard from './components/onboarding/OnboardingWizard'
 import DashboardHome from './components/dashboard/DashboardHome'
@@ -15,13 +16,15 @@ import OutreachDashboard from './components/outreach/OutreachDashboard'
 import QualityDashboard from './components/quality/QualityDashboard'
 import {
   VIEWS,
-  loadInitialView,
+  isOnboardingComplete,
+  loadDemoInitialView,
   persistView,
 } from './modules/appNavigation'
 
 function AppContent() {
   const { profile } = useProfile()
-  const [view, setViewState] = useState(() => loadInitialView(profile))
+  const { demoMode, demoReady } = useDemoBootstrapContext()
+  const [view, setViewState] = useState(() => loadDemoInitialView(profile, demoMode))
 
   const setView = useCallback((next) => {
     setViewState(next)
@@ -29,10 +32,19 @@ function AppContent() {
   }, [])
 
   const handleOnboardingComplete = useCallback(() => {
-    setView(VIEWS.DASHBOARD)
-  }, [setView])
+    setView(demoMode ? VIEWS.JOBS : VIEWS.DASHBOARD)
+  }, [setView, demoMode])
 
-  if (view === VIEWS.ONBOARDING) {
+  const skipOnboarding = demoMode && demoReady && isOnboardingComplete(profile)
+
+  useEffect(() => {
+    if (skipOnboarding) {
+      setViewState(VIEWS.JOBS)
+      persistView(VIEWS.JOBS)
+    }
+  }, [skipOnboarding])
+
+  if (view === VIEWS.ONBOARDING && !skipOnboarding) {
     return (
       <OnboardingWizard
         mode="onboarding"
@@ -41,27 +53,29 @@ function AppContent() {
     )
   }
 
+  const activeView = view === VIEWS.ONBOARDING && skipOnboarding ? VIEWS.JOBS : view
+
   return (
-    <AppShell activeView={view} onNavigate={setView}>
-      {view === VIEWS.DASHBOARD && <DashboardHome onNavigate={setView} />}
-      {view === VIEWS.PROFILE && <ProfileHome onNavigate={setView} />}
-      {view === VIEWS.PROFILE_EDIT && (
+    <AppShell activeView={activeView} onNavigate={setView}>
+      {activeView === VIEWS.DASHBOARD && <DashboardHome onNavigate={setView} />}
+      {activeView === VIEWS.PROFILE && <ProfileHome onNavigate={setView} />}
+      {activeView === VIEWS.PROFILE_EDIT && (
         <OnboardingWizard
           mode="edit"
           onComplete={() => setView(VIEWS.PROFILE)}
         />
       )}
-      {view === VIEWS.INTELLIGENCE && (
+      {activeView === VIEWS.INTELLIGENCE && (
         <CandidateIntelligenceScreen onNavigate={setView} />
       )}
-      {view === VIEWS.JOBS && <JobDiscoveryScreen />}
-      {view === VIEWS.APPLICATIONS && <ApplicationHome />}
-      {view === VIEWS.RESUMES && <ResumeLibrary onNavigate={setView} />}
-      {view === VIEWS.CAREER_STRATEGY && <CareerStrategyScreen />}
-      {view === VIEWS.AI_COMMAND && <AICommandCenter />}
-      {view === VIEWS.OUTREACH && <OutreachDashboard />}
-      {view === VIEWS.QUALITY && <QualityDashboard />}
-      {view === VIEWS.SETTINGS && <SettingsHome />}
+      {activeView === VIEWS.JOBS && <JobDiscoveryScreen />}
+      {activeView === VIEWS.APPLICATIONS && <ApplicationHome />}
+      {activeView === VIEWS.RESUMES && <ResumeLibrary onNavigate={setView} />}
+      {activeView === VIEWS.CAREER_STRATEGY && <CareerStrategyScreen />}
+      {activeView === VIEWS.AI_COMMAND && <AICommandCenter />}
+      {activeView === VIEWS.OUTREACH && <OutreachDashboard />}
+      {activeView === VIEWS.QUALITY && <QualityDashboard />}
+      {activeView === VIEWS.SETTINGS && <SettingsHome />}
     </AppShell>
   )
 }
@@ -70,7 +84,9 @@ export default function App() {
   return (
     <ProfileProvider>
       <div className="min-h-screen bg-[var(--color-surface)]">
-        <AppContent />
+        <DemoBootstrapGate>
+          <AppContent />
+        </DemoBootstrapGate>
       </div>
     </ProfileProvider>
   )
