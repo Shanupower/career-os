@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ArrowRight, Loader2, Sparkles, Zap } from 'lucide-react'
 import Card from '../ui/Card'
 import Button from '../ui/Button'
+import Alert from '../ui/Alert'
 import { useProfile } from '../../context/ProfileContext'
 import { useAppConfig } from '../../hooks/useAppConfig'
 import { loadDemoData } from '../../modules/demo/loadDemoData'
@@ -12,14 +13,18 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
   const { profile, updateProfile, markOnboardingComplete } = useProfile()
   const { demoMode } = useAppConfig()
   const [demoLoading, setDemoLoading] = useState(false)
+  const [demoError, setDemoError] = useState(null)
   const hasProgress = profile.resume?.fileName || profile.meta?.lastStep > 0
 
   const handleExploreDemo = async () => {
     setDemoLoading(true)
+    setDemoError(null)
     try {
       await loadDemoData({ updateProfile })
       markOnboardingComplete()
       onDemoComplete?.()
+    } catch (err) {
+      setDemoError(err instanceof Error ? err.message : 'Failed to load demo data')
     } finally {
       setDemoLoading(false)
     }
@@ -43,6 +48,11 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
 
       {demoMode && (
         <Card title="Live demo" description="Pre-loaded with a fictional Alex Dev profile and scored jobs.">
+          {demoError && (
+            <div className="mb-3">
+              <Alert variant="error">{demoError}</Alert>
+            </div>
+          )}
           <Button onClick={handleExploreDemo} disabled={demoLoading} className="w-full justify-center sm:w-auto">
             {demoLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Zap className="h-4 w-4" />}
             Explore live demo
