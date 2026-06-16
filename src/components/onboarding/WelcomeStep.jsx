@@ -62,7 +62,14 @@ export default function WelcomeStep({ onNext, onDemoComplete }) {
       </Card>
 
       {hasProgress && (
-        <Card title="Continue where you left off" description={`Last saved: ${new Date(profile.meta?.updatedAt).toLocaleString()}`}>
+        <Card
+          title="Continue where you left off"
+          description={
+            profile.meta?.updatedAt
+              ? `Last saved: ${new Date(profile.meta.updatedAt).toLocaleString()}`
+              : 'Profile in progress'
+          }
+        >
           <p className="text-sm text-stone-600 dark:text-stone-400">
             {profile.resume?.fileName ? `Resume: ${profile.resume.fileName}` : 'Profile in progress'}
           </p>
