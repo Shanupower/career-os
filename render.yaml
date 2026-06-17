@@ -5,6 +5,7 @@ services:
     dockerfilePath: ./Dockerfile.render
     plan: free
     healthCheckPath: /
+    maxShutdownDelaySeconds: 60
     envVars:
       - key: DEMO_MODE
         value: "1"
