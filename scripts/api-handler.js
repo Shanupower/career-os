@@ -54,8 +54,9 @@ function fileMtime(filePath) {
 }
 
 export function getAppConfig() {
+  const demoFlag = (process.env.DEMO_MODE ?? '').toLowerCase()
   return {
-    demoMode: process.env.DEMO_MODE === '1' || process.env.DEMO_MODE === 'true',
+    demoMode: demoFlag === '1' || demoFlag === 'true',
     version: '1.0.0',
   }
 }
