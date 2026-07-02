@@ -5,6 +5,7 @@ import {
   FileText,
   LayoutDashboard,
   MessageSquare,
+  MessagesSquare,
   MoreHorizontal,
   Settings,
   ShieldCheck,
@@ -24,26 +25,41 @@ const ICONS = {
   Settings,
   Target,
   MessageSquare,
+  MessagesSquare,
   Users,
   ShieldCheck,
 }
 
+import { useChat } from '../../context/ChatContext'
+
 function NavButton({ item, active, onNavigate, compact = false }) {
+  const { unreadCount } = useChat()
   const Icon = ICONS[item.icon] || LayoutDashboard
   const isActive = active === item.id || (item.id === 'profile' && active === 'profile-edit')
+  const isPeerChat = item.id === 'peer-chat'
 
   return (
     <button
       type="button"
       onClick={() => onNavigate(item.id)}
-      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+      className={`relative flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
         isActive
           ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-300'
           : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200'
       } ${compact ? 'flex-col gap-1 px-2 py-2 text-xs' : ''}`}
     >
-      <Icon className={compact ? 'h-5 w-5' : 'h-4 w-4 shrink-0'} />
+      <div className="relative flex items-center justify-center">
+        <Icon className={compact ? 'h-5 w-5' : 'h-4 w-4 shrink-0'} />
+        {isPeerChat && unreadCount > 0 && compact && (
+          <span className="absolute -top-1 -right-1.5 flex h-2.5 w-2.5 rounded-full bg-rose-500 ring-2 ring-white dark:ring-stone-950 animate-pulse" />
+        )}
+      </div>
       <span className={compact ? 'truncate' : ''}>{item.label}</span>
+      {isPeerChat && unreadCount > 0 && !compact && (
+        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1.5 text-[10px] font-bold text-white shadow-sm animate-pulse">
+          {unreadCount > 99 ? '99+' : unreadCount}
+        </span>
+      )}
     </button>
   )
 }

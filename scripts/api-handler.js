@@ -26,6 +26,7 @@ import {
   runQualityAudit,
 } from './run-quality-audit.js'
 import { importLinkedInText } from './run-linkedin-import.js'
+import { loadMessages, getSharedFilePath } from './chat-store.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -658,6 +659,33 @@ export async function handleApiRequest(req, res) {
       sendJson(res, 404, { error: 'Not found' })
       return true
     }
+  }
+
+  // ── Chat endpoints ─────────────────────────────────────
+  if (url === '/api/chat/history' && req.method === 'GET') {
+    try {
+      const query = new URL(req.url, 'http://localhost').searchParams
+      const room = query.get('room') || 'career-hub'
+      const messages = loadMessages(room).slice(-100)
+      sendJson(res, 200, { messages })
+    } catch (e) {
+      sendJson(res, 500, { error: e.message })
+    }
+    return true
+  }
+
+  if (url.startsWith('/api/chat/files/') && req.method === 'GET') {
+    const filename = url.replace('/api/chat/files/', '')
+    const filePath = getSharedFilePath(decodeURIComponent(filename))
+    if (!filePath) {
+      sendJson(res, 404, { error: 'File not found' })
+      return true
+    }
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/pdf')
+    res.setHeader('Content-Disposition', `attachment; filename="${path.basename(filePath)}"`)
+    fs.createReadStream(filePath).pipe(res)
+    return true
   }
 
   sendJson(res, 404, { error: 'API route not found' })

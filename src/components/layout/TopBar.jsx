@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 
-export default function TopBar({ title, actions }) {
+export default function TopBar({ title, actions = null }) {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
 
   const toggleDark = () => {

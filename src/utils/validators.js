@@ -60,10 +60,15 @@ export function validateStep(stepIndex, profile) {
       if (!isNonEmpty(profile.resume?.rawText)) errors.push('Resume text could not be extracted.')
       break
     case 2: {
-      const { fullName, email, phone } = profile.basicProfile || {}
+      const { fullName, email, phone, currentRole, experienceYears, targetRoles } = profile.basicProfile || {}
       if (!isNonEmpty(fullName)) errors.push('Full name is required.')
       if (!isValidEmail(email)) errors.push('A valid email address is required.')
       if (isNonEmpty(phone) && !isValidPhone(phone)) errors.push('Phone number format is invalid.')
+      if (!isNonEmpty(currentRole)) errors.push('Current role is required.')
+      if (experienceYears === undefined || experienceYears === null || String(experienceYears).trim() === '') {
+        errors.push('Years of experience is required.')
+      }
+      if (!targetRoles?.length) errors.push('At least one target role is required.')
       break
     }
     case 3:

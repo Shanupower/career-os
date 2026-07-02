@@ -1,0 +1,18 @@
+[
+  {
+    "id": "career-hub",
+    "name": "Career Hub",
+    "type": "group",
+    "createdAt": "2026-06-27T09:19:14.787Z"
+  },
+  {
+    "id": "dm:user_coeluvb:user_zcisoxv",
+    "name": null,
+    "type": "dm",
+    "participants": [
+      "user_coeluvb",
+      "user_zcisoxv"
+    ],
+    "createdAt": "2026-06-27T09:45:22.239Z"
+  }
+]
