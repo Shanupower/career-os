@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
-const VENV_PYTHON = path.join(ROOT, '.venv/bin/python')
+const VENV_PYTHON = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
 const RUN_SCAN = path.join(ROOT, 'python/project_intelligence/run_project_scan.py')
 const OUTPUT_PATH = path.join(ROOT, 'data/intelligence/project-intelligence.json')
 
@@ -38,7 +38,7 @@ export function runProjectScan(opts = {}) {
 
   return new Promise((resolve) => {
     const chunks = { out: [], err: [] }
-    const child = spawn(VENV_PYTHON, args, { cwd: ROOT, env: { ...process.env } })
+    const child = spawn(VENV_PYTHON, args, { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
     child.stdout.on('data', (d) => chunks.out.push(d))
     child.stderr.on('data', (d) => chunks.err.push(d))
     child.on('close', (code) => {

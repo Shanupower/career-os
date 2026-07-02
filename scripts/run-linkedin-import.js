@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
-const VENV_PYTHON = path.join(ROOT, '.venv/bin/python')
+const VENV_PYTHON = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
 const MAPPER = path.join(ROOT, 'python/profile_import/run_linkedin_import.py')
 
 export function importLinkedInText(rawText) {
@@ -14,7 +14,7 @@ export function importLinkedInText(rawText) {
       resolve({ ok: false, error: 'Python venv not found. Run: npm run setup' })
       return
     }
-    const child = spawn(VENV_PYTHON, [MAPPER], { cwd: ROOT, env: { ...process.env } })
+    const child = spawn(VENV_PYTHON, [MAPPER], { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
     let stdout = ''
     let stderr = ''
     child.stdin.write(JSON.stringify({ rawText }))

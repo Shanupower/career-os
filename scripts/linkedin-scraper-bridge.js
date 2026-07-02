@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
-const VENV_PYTHON = path.join(ROOT, '.venv/bin/python')
+const VENV_PYTHON = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
 const SCRAPER = path.join(ROOT, 'python/outreach_scraper/scrape_linkedin_contacts.py')
 const SESSION_FILE = path.join(ROOT, 'data/outreach/linkedin_session.json')
 
@@ -40,7 +40,7 @@ function runPython(args, { timeoutMs }) {
       resolve({ contacts: [], queriesRun: 0, error: 'Python venv not found (run npm run setup:jobs)' })
       return
     }
-    const child = spawn(VENV_PYTHON, [SCRAPER, ...args], { cwd: ROOT, env: { ...process.env } })
+    const child = spawn(VENV_PYTHON, [SCRAPER, ...args], { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
     let stdout = ''
     let stderr = ''
     const timer = setTimeout(() => child.kill('SIGKILL'), timeoutMs)

@@ -14,9 +14,10 @@ const SYSTEM_REPORT = path.join(ROOT, 'data/audits/system_audit_report.json')
 
 function runPython(args = []) {
   return new Promise((resolve, reject) => {
-    const proc = spawn(path.join(ROOT, '.venv/bin/python'), [AUDIT_SCRIPT, ...args], {
+    const venvPython = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
+    const proc = spawn(venvPython, [AUDIT_SCRIPT, ...args], {
       cwd: ROOT,
-      env: process.env,
+      env: { ...process.env, PYTHONIOENCODING: 'utf-8' },
     })
     let stdout = ''
     let stderr = ''
