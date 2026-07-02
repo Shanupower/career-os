@@ -239,7 +239,7 @@ def main() -> int:
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(doc, indent=2), encoding="utf-8")
     merged = merge_into_intelligence(agg)
-    print(f"Scanned {len(projects)} project(s) → {OUTPUT_PATH.relative_to(ROOT)}"
+    print(f"Scanned {len(projects)} project(s) -> {OUTPUT_PATH.relative_to(ROOT)}"
           f"{' (intelligence merged)' if merged else ''}")
     return 0
 

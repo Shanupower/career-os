@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, '..')
 const INTELLIGENCE_PATH = path.join(ROOT, 'data/intelligence/candidate-intelligence.json')
 const PROFILE_PATH = path.join(ROOT, 'data/profile/candidate-profile.json')
 const JOBS_PATH = path.join(ROOT, 'data/jobs/discovered_jobs.json')
-const VENV_PYTHON = path.join(ROOT, '.venv/bin/python')
+const VENV_PYTHON = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
 const RUN_DISCOVERY = path.join(ROOT, 'python/job_discovery/run_discovery.py')
 
 function ensureDir(filePath) {
@@ -98,7 +98,7 @@ export function runDiscovery(opts = {}) {
 
   return new Promise((resolve) => {
     const chunks = { out: [], err: [] }
-    const child = spawn(VENV_PYTHON, args, { cwd: ROOT, env: { ...process.env } })
+    const child = spawn(VENV_PYTHON, args, { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
     child.stdout.on('data', (d) => chunks.out.push(d))
     child.stderr.on('data', (d) => chunks.err.push(d))
     child.on('close', (code) => {

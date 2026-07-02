@@ -224,7 +224,7 @@ def build_cover_letter_context(
         "name": name,
         "subtitle": resume_ctx.get("subtitle") or "",
         "contact_items": resume_ctx.get("contact_items") or [],
-        "date_long": date.today().strftime("%B %-d, %Y"),
+        "date_long": f"{date.today().strftime('%B')} {date.today().day}, {date.today().year}",
         "addressee_lines": addressee,
         "salutation": "Dear Hiring Team,",
         "paragraphs": paragraphs,

@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { Brain, ExternalLink, MessageSquare, Settings, ShieldCheck, Target, Users, X } from 'lucide-react'
+import { Brain, ExternalLink, MessageSquare, MessagesSquare, Settings, ShieldCheck, Target, Users, X } from 'lucide-react'
 import Sidebar from './Sidebar'
 import TopBar from './TopBar'
 import { VIEWS, VIEW_TITLES } from '../../modules/appNavigation'
 import { useAppConfig } from '../../hooks/useAppConfig'
+import { useChat } from '../../context/ChatContext'
 
 export default function AppShell({ activeView, onNavigate, children }) {
+  const { unreadCount } = useChat()
   const [moreOpen, setMoreOpen] = useState(false)
   const { demoMode } = useAppConfig()
   const title = VIEW_TITLES[activeView] || 'Career OS'
@@ -92,6 +94,19 @@ export default function AppShell({ activeView, onNavigate, children }) {
             >
               <Users className="h-4 w-4" />
               Outreach
+            </button>
+            <button
+              type="button"
+              onClick={() => { onNavigate(VIEWS.PEER_CHAT); setMoreOpen(false) }}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+            >
+              <MessagesSquare className="h-4 w-4" />
+              Peer Chat
+              {unreadCount > 0 && (
+                <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1.5 text-[10px] font-bold text-white shadow-sm animate-pulse">
+                  {unreadCount > 99 ? '99+' : unreadCount}
+                </span>
+              )}
             </button>
             <button
               type="button"

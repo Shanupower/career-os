@@ -136,7 +136,7 @@ export function getTailoredFilenames(assets) {
   ]
   return entries
     .filter((e) => assets[e.key])
-    .map((e) => ({ ...e, filename: assets[e.key].split('/').pop() }))
+    .map((e) => ({ ...e, filename: assets[e.key].split(/[/\\]/).pop() }))
 }
 
 export async function copyToClipboard(text) {

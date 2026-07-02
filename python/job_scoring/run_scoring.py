@@ -78,7 +78,7 @@ def main() -> int:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
-    print(f"Scored {len(scored)} jobs → {args.output.relative_to(ROOT)}")
+    print(f"Scored {len(scored)} jobs -> {args.output.relative_to(ROOT)}")
     return 0
 
 

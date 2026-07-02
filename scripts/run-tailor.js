@@ -15,7 +15,7 @@ const PROFILE_PATH = path.join(ROOT, 'data/profile/candidate-profile.json')
 const INTELLIGENCE_PATH = path.join(ROOT, 'data/intelligence/candidate-intelligence.json')
 const SCORED_PATH = path.join(ROOT, 'data/jobs/scored_jobs.json')
 const RESUMES_ROOT = path.join(ROOT, 'data/resumes')
-const VENV_PYTHON = path.join(ROOT, '.venv/bin/python')
+const VENV_PYTHON = process.platform === 'win32' ? path.join(ROOT, '.venv/Scripts/python.exe') : path.join(ROOT, '.venv/bin/python')
 const RUN_TAILOR = path.join(ROOT, 'python/resume_generator/run_tailor.py')
 
 function ensureDir(filePath) {
@@ -103,7 +103,7 @@ export function runTailorStream(res, opts = {}) {
   }
   initSseResponse(res)
   sseWrite(res, { type: 'log', stream: 'stdout', line: 'Starting resume + cover letter generation…' })
-  const child = spawn(VENV_PYTHON, prep.args, { cwd: ROOT, env: { ...process.env } })
+  const child = spawn(VENV_PYTHON, prep.args, { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
   streamChildProcess(res, child, {
     onClose: ({ code }) => {
       const payload = loadTailorPayload()
@@ -129,7 +129,7 @@ export function runTailor(opts = {}) {
 
   return new Promise((resolve) => {
     const chunks = { out: [], err: [] }
-    const child = spawn(VENV_PYTHON, prep.args, { cwd: ROOT, env: { ...process.env } })
+    const child = spawn(VENV_PYTHON, prep.args, { cwd: ROOT, env: { ...process.env, PYTHONIOENCODING: 'utf-8' } })
     child.stdout.on('data', (d) => chunks.out.push(d))
     child.stderr.on('data', (d) => chunks.err.push(d))
     child.on('close', (code) => {

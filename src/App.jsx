@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ProfileProvider, useProfile } from './context/ProfileContext'
+import { ChatProvider } from './context/ChatContext'
 import DemoBootstrapGate, { useDemoBootstrapContext } from './components/demo/DemoBootstrapGate'
 import AppShell from './components/layout/AppShell'
 import OnboardingWizard from './components/onboarding/OnboardingWizard'
@@ -14,6 +15,7 @@ import CareerStrategyScreen from './components/ai/CareerStrategyScreen'
 import AICommandCenter from './components/ai/AICommandCenter'
 import OutreachDashboard from './components/outreach/OutreachDashboard'
 import QualityDashboard from './components/quality/QualityDashboard'
+import PeerChatScreen from './components/chat/PeerChatScreen'
 import {
   VIEWS,
   isOnboardingComplete,
@@ -74,6 +76,7 @@ function AppContent() {
       {activeView === VIEWS.CAREER_STRATEGY && <CareerStrategyScreen />}
       {activeView === VIEWS.AI_COMMAND && <AICommandCenter />}
       {activeView === VIEWS.OUTREACH && <OutreachDashboard />}
+      {activeView === VIEWS.PEER_CHAT && <PeerChatScreen />}
       {activeView === VIEWS.QUALITY && <QualityDashboard />}
       {activeView === VIEWS.SETTINGS && <SettingsHome />}
     </AppShell>
@@ -83,11 +86,13 @@ function AppContent() {
 export default function App() {
   return (
     <ProfileProvider>
-      <div className="min-h-screen bg-[var(--color-surface)]">
-        <DemoBootstrapGate>
-          <AppContent />
-        </DemoBootstrapGate>
-      </div>
+      <ChatProvider>
+        <div className="min-h-screen bg-[var(--color-surface)]">
+          <DemoBootstrapGate>
+            <AppContent />
+          </DemoBootstrapGate>
+        </div>
+      </ChatProvider>
     </ProfileProvider>
   )
 }

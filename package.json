@@ -6,7 +6,7 @@
   "description": "Open-source local-first job hunt automation for tech professionals",
   "type": "module",
   "scripts": {
-    "setup": "bash scripts/setup.sh",
+    "setup": "node scripts/setup.js --all",
     "dev": "vite",
     "build": "vite build",
     "start": "npm run build && tsx scripts/local-server.js",
@@ -18,8 +18,8 @@
     "preview": "vite preview",
     "generate-roles": "node scripts/generate-roles.js",
     "regenerate-intelligence": "node scripts/regenerate-intelligence.js",
-    "setup:jobspy": "bash scripts/setup-jobspy.sh",
-    "setup:jobs": "bash scripts/setup-job-discovery.sh",
+    "setup:jobspy": "node scripts/setup.js --jobspy",
+    "setup:jobs": "node scripts/setup.js --jobs",
     "discover:jobs": "node scripts/run-discovery.js --providers ats --country USA",
     "discover:jobs:mock": "node scripts/run-discovery.js --mock",
     "score:jobs": ".venv/bin/python python/job_scoring/run_scoring.py",
@@ -38,6 +38,8 @@
     "pdfjs-dist": "^6.0.227",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
     "tsx": "^4.22.4"
   },
   "devDependencies": {

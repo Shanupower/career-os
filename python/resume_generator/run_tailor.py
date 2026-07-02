@@ -138,7 +138,7 @@ def tailor_job(job: dict, profile: dict, intelligence: dict, *, use_llm: bool = 
 
     title = job.get("title") or "role"
     company = job.get("company") or "company"
-    print(f"→ Tailoring: {title} @ {company}", flush=True)
+    print(f"-> Tailoring: {title} @ {company}", flush=True)
 
     if use_llm:
         print("  · Claude Code: drafting summary, bullets, cover letter…", flush=True)
@@ -223,7 +223,7 @@ def tailor_job(job: dict, profile: dict, intelligence: dict, *, use_llm: bool = 
 
     rel = lambda p: str(p.relative_to(ROOT))
     print(
-        f"  ✓ Done [{content_engine}] — resume {resume_pages}p, cover {cover_pages}p",
+        f"  [OK] Done [{content_engine}] - resume {resume_pages}p, cover {cover_pages}p",
         flush=True,
     )
     job["tailoredAssets"] = {
@@ -266,7 +266,7 @@ def main() -> int:
         updated = tailor_job(job, profile, intelligence, use_llm=not args.no_llm)
         by_id[updated["jobId"]] = updated
         engine = updated.get("tailoredAssets", {}).get("contentEngine", "?")
-        print(f"Tailored [{engine}]: {updated.get('title')} @ {updated.get('company')} → data/resumes/{updated['jobId']}/")
+        print(f"Tailored [{engine}]: {updated.get('title')} @ {updated.get('company')} -> data/resumes/{updated['jobId']}/")
 
     scored_doc["jobs"] = list(by_id.values())
     args.scored.write_text(json.dumps(scored_doc, indent=2), encoding="utf-8")
